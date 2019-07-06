@@ -23,18 +23,17 @@ module.exports = {
 		    contentBase: path.join(__dirname,'dist'),
 		    port: 3000,
 		    hot: true,
-		    open: true,
-		    proxy: {
-			'/api': {
-				target: 'http://localhost:8080',
-				pathRewrite:  {'^/api' : ''}
-				} 	  
-		    }
+			open: true,
+			historyApiFallback: true
+		   
 	},
 	module: {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
+				resolve: {
+	  				extensions: ['.js', '.jsx']
+  				},
 				exclude: /(node_modules|bower_components)/,
 				use: {
 					loader: 'babel-loader',
@@ -69,6 +68,4 @@ module.exports = {
         	}
 	]
   }
-
-
 };
